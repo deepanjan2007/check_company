@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>InKloom AI — Brand Governance</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <aside class="sidebar">
+    <div class="brand"><div class="brand-mark">IK</div><div><strong>InKloom AI</strong><small>Brand Governance</small></div></div>
+    <nav>
+      <button class="nav-link active" data-view="dashboard">▦ <span>Dashboard</span></button>
+      <button class="nav-link" data-view="checker">✦ <span>Content Checker</span></button>
+      <button class="nav-link" data-view="guidelines">◈ <span>Brand Guidelines</span></button>
+      <button class="nav-link" data-view="history">◷ <span>Review History</span></button>
+    </nav>
+    <div class="sidebar-bottom"><span class="status-dot"></span> Demo mode <small>Frontend prototype</small></div>
+  </aside>
+
+  <main class="main">
+    <header class="topbar">
+      <div><p class="eyebrow">WORKSPACE / BRAND SAFETY</p><h1 id="page-title">Dashboard</h1></div>
+      <div class="user-chip"><div class="avatar">DR</div><span>Demo Reviewer</span></div>
+    </header>
+
+    <section class="view active" id="dashboard-view">
+      <div class="welcome-card">
+        <div><p class="eyebrow light">YOUR BRAND, CONSISTENT</p><h2>Keep every piece of content<br/>on-brand and trustworthy.</h2><p>Review content against your approved brand rules before it goes live.</p><button class="primary" data-go="checker">Check content <span>→</span></button></div>
+        <div class="welcome-art"><div class="orbit orbit-one"></div><div class="orbit orbit-two"></div><div class="shield">✓</div><span class="spark spark-one">✦</span><span class="spark spark-two">✧</span></div>
+      </div>
+      <div class="stats-grid">
+        <article class="stat-card"><span class="stat-icon purple">▣</span><p>Content reviewed</p><strong id="stat-reviewed">0</strong><small>In this browser demo</small></article>
+        <article class="stat-card"><span class="stat-icon green">✓</span><p>Approved</p><strong id="stat-approved">0</strong><small>Human-reviewed items</small></article>
+        <article class="stat-card"><span class="stat-icon orange">⚑</span><p>Needs review</p><strong id="stat-pending">0</strong><small>Flagged or pending items</small></article>
+        <article class="stat-card"><span class="stat-icon blue">◎</span><p>Brand rules</p><strong id="stat-rules">4</strong><small>Current guideline settings</small></article>
+      </div>
+      <div class="section-heading"><div><h2>Recent reviews</h2><p>Your latest content checks will appear here.</p></div><button class="secondary" data-go="history">View history →</button></div>
+      <div class="table-wrap"><table><thead><tr><th>CONTENT</th><th>COMPLIANCE</th><th>STATUS</th><th>DATE</th></tr></thead><tbody id="recent-table"><tr><td colspan="4" class="empty">No reviews yet. Start by checking content.</td></tr></tbody></table></div>
+    </section>
+
+    <section class="view" id="checker-view">
+      <div class="section-heading"><div><h2>Content Checker</h2><p>Paste content and scan it against your brand guidelines.</p></div><span class="demo-pill">✦ Rule-based demo</span></div>
+      <div class="checker-grid">
+        <article class="panel">
+          <div class="panel-title"><div><h3>Content to review</h3><p>Enter a draft for analysis</p></div><span class="step">01</span></div>
+          <label for="content-title">Content name</label><input id="content-title" type="text" placeholder="e.g. Summer campaign post" value="Sample social media post"/>
+          <label for="content-text">Content text</label><textarea id="content-text" rows="9" placeholder="Paste your text here...">We are the best company in India! Hey folks, check out our amazing service. Contact us today.</textarea>
+          <div class="input-footer"><span id="char-count">0 characters</span><label class="upload-label" for="file-input">＋ Import .txt</label><input id="file-input" type="file" accept=".txt,text/plain" hidden/></div>
+          <button class="primary full" id="analyze-btn">✦ Analyze content</button>
+          <p class="fine-print">This demo uses local sample rules. No AI API or server is connected.</p>
+        </article>
+        <article class="panel results-panel">
+          <div class="panel-title"><div><h3>Analysis report</h3><p>Findings and suggested improvements</p></div><span class="step">02</span></div>
+          <div id="report-empty" class="report-empty"><div class="empty-icon">✦</div><h3>Ready to review</h3><p>Your report will appear here after you analyze content.</p></div>
+          <div id="report" class="hidden">
+            <div class="score-row"><div><span class="muted">Brand compliance score</span><div class="score" id="score-value">--<small>/100</small></div></div><div id="report-status" class="status pending">Needs review</div></div>
+            <div class="score-track"><div id="score-bar"></div></div>
+            <div class="issues-head"><strong id="issues-count">0 issues detected</strong><span>Suggestions are not auto-applied</span></div>
+            <div id="issues-list"></div>
+            <div class="suggestion-box"><div class="suggestion-header"><span>✦</span><strong>Suggested revised content</strong></div><p id="suggested-text"></p><button class="secondary small" id="copy-suggestion">Copy suggestion</button></div>
+            <div class="review-actions"><button class="reject" id="reject-btn">Reject</button><button class="approve" id="approve-btn">Approve</button></div>
+            <p class="fine-print">Approval is a human decision. This prototype does not publish content.</p>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <section class="view" id="guidelines-view">
+      <div class="section-heading"><div><h2>Brand Guidelines</h2><p>Define the rules used by the demo content checker.</p></div></div>
+      <article class="panel guidelines-panel">
+        <div class="panel-title"><div><h3>Brand profile</h3><p>These settings are saved in this browser only.</p></div><span class="step">RULES</span></div>
+        <label for="brand-name">Brand name</label><input id="brand-name" value="InKloom AI" />
+        <div class="two-cols"><div><label for="brand-tone">Preferred tone</label><select id="brand-tone"><option>Professional</option><option>Friendly</option><option>Formal</option><option>Conversational</option></select></div><div><label for="brand-color">Primary brand color</label><div class="color-input"><input id="brand-color" type="color" value="#635bff"/><span id="color-code">#635BFF</span></div></div></div>
+        <label for="approved-terms">Approved terminology (comma-separated)</label><input id="approved-terms" value="customer, reliable, trusted, solution" />
+        <label for="blocked-claims">Claims/phrases to flag (comma-separated)</label><input id="blocked-claims" value="best company, number one, no. 1, guaranteed, 100% guaranteed" />
+        <div class="guideline-note"><strong>ⓘ Demo behavior</strong><p>Claim phrases and overly casual wording are checked locally. Visual identity, factual accuracy, and accessibility need deeper integrations in the backend version.</p></div>
+        <button class="primary" id="save-guidelines">Save guidelines</button><span id="save-message" class="save-message"></span>
+      </article>
+    </section>
+
+    <section class="view" id="history-view">
+      <div class="section-heading"><div><h2>Review History</h2><p>Past analyses and human decisions stored in this browser.</p></div><button class="secondary" id="clear-history">Clear history</button></div>
+      <div class="table-wrap"><table><thead><tr><th>CONTENT</th><th>SCORE</th><th>ISSUES</th><th>STATUS</th><th>DATE</th></tr></thead><tbody id="history-table"><tr><td colspan="5" class="empty">No history available yet.</td></tr></tbody></table></div>
+    </section>
+    <footer>InKloom AI <span>•</span> Prototype for hackathon demonstration <span>•</span> Human review required</footer>
+  </main>
+  <div id="toast" class="toast" role="status"></div>
+  <script src="script.js"></script>
+</body>
+</html>
